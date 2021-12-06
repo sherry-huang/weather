@@ -1,32 +1,67 @@
 .weather {
-    background-color: #CCCCCC;
-    // #ff758829;
-    // padding: 0 50px;
+    background: linear-gradient(170deg, #B1C3ED 400px, #d9e5fe 0) left;
+                // #d9e5fe
+                // #B1C3ED
+                // #b1dfed
+    padding: 0 100px;
+    display: flex;
+    justify-content: center;
 
-    .weather-header {
-        padding: 50px 100px 0;
-
-        .weather-title {
-            padding: 0 0 50px 0;
-            font-size: 40px;
+    .weather-box {
+        @media(min-width:960px) {
+            // > 960 則
+            max-width: 960px;
         }
 
-        .weather-form {
-            border: 3px solid white;
-            padding: 30px 30px 0 30px;
+        .weather-header {
+            // background: linear-gradient(-20deg, #0000 82%, #B1C3ED 0) left; // 82%
+            // display: flex;
+            // justify-content: space-around;
+            // padding: 50px 100px 0;
+            padding: 50px 0 0;
+            text-align: left;
+    
+            .weather-title {
+                // padding: 0 0 50px 0;
+                font-size: 80px;
+                font-weight: 600;
+            }
+            
+            .weather-desc {
+                margin: 0 0 0 30px;
+            }
+    
+            .weather-form {
+                // border: 3px solid white;
+                margin: 20px 0 0 30px;
+                width: 600px;
+                line-height: 0em;
+    
+                .tree-form {
+                    width: 400px;
+                }
+    
+                .ant-select-selector {
+                    color: #adc6ff;
+                    background-color: #efdbff;
+                }
+            }
         }
-    }
+    
+        .weather-list {
+            padding: 50px 0;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: space-between;
 
-    .last-update {
-        text-align: end;
-        padding: 10px 100px 0 0;
-    }
+            // @media(min-width:960px) {
+            //     justify-content: center;
+            // }
 
-    .weather-list {
-        padding: 50px 0;
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        justify-content: center;
+            @media(max-width:768px) {
+                justify-content: center;
+            }
+        }
     }
 }

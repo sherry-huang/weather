@@ -86,28 +86,28 @@ export const locationOptions = [
   ];
 
 export const cityOptions = [
-    { label: '基隆市', value: '基隆市' },
-    { label: '新北市', value: '新北市' },
-    { label: '臺北市', value: '臺北市' },
-    { label: '桃園市', value: '桃園市' },
-    { label: '新竹縣', value: '新竹縣' },
-    { label: '新竹市', value: '新竹市' },
-    { label: '苗栗縣', value: '苗栗縣' },
-    { label: '臺中市', value: '臺中市' },
-    { label: '彰化縣', value: '彰化縣' },
-    { label: '雲林縣', value: '雲林縣' },
-    { label: '南投縣', value: '南投縣' },
-    { label: '嘉義縣', value: '嘉義縣' },
-    { label: '嘉義市', value: '嘉義市' },
-    { label: '臺南市', value: '臺南市' },
-    { label: '高雄市', value: '高雄市' },
-    { label: '金門縣', value: '金門縣' },
-    { label: '屏東縣', value: '屏東縣' },
-    { label: '宜蘭縣', value: '宜蘭縣' },
-    { label: '臺東縣', value: '臺東縣' },
-    { label: '花蓮縣', value: '花蓮縣' },
-    { label: '連江縣', value: '連江縣' },
-    { label: '澎湖縣', value: '澎湖縣' }
+    { label: '基隆市', value: '基隆市', parent: '北部'},
+    { label: '新北市', value: '新北市', parent: '北部'},
+    { label: '臺北市', value: '臺北市', parent: '北部'},
+    { label: '桃園市', value: '桃園市', parent: '北部'},
+    { label: '新竹縣', value: '新竹縣', parent: '北部'},
+    { label: '新竹市', value: '新竹市', parent: '北部'},
+    { label: '苗栗縣', value: '苗栗縣', parent: '西部'},
+    { label: '臺中市', value: '臺中市', parent: '西部'},
+    { label: '彰化縣', value: '彰化縣', parent: '西部'},
+    { label: '雲林縣', value: '雲林縣', parent: '西部'},
+    { label: '南投縣', value: '南投縣', parent: '西部'},
+    { label: '嘉義縣', value: '嘉義縣', parent: '南部'},
+    { label: '嘉義市', value: '嘉義市', parent: '南部'},
+    { label: '臺南市', value: '臺南市', parent: '南部'},
+    { label: '高雄市', value: '高雄市', parent: '南部'},
+    { label: '屏東縣', value: '屏東縣', parent: '南部'},
+    { label: '宜蘭縣', value: '宜蘭縣', parent: '東部'},
+    { label: '臺東縣', value: '臺東縣', parent: '東部'},
+    { label: '花蓮縣', value: '花蓮縣', parent: '東部'},
+    { label: '金門縣', value: '金門縣', parent: '其他'},
+    { label: '連江縣', value: '連江縣', parent: '其他'},
+    { label: '澎湖縣', value: '澎湖縣', parent: '其他'}
 ];
 
 export const cityNorthOptions = [
@@ -145,4 +145,88 @@ export const cityOtherOptions = [
     { label: '金門縣', value: '金門縣' },
     { label: '連江縣', value: '連江縣' },
     { label: '澎湖縣', value: '澎湖縣' }
+];
+
+export const handleData = (cityOptions) => {
+    const oriData = [
+        {
+            title: "北部",
+            value: "北部",
+            key: "北部",
+            children: [],
+        }, {
+            title: "西部",
+            value: "西部",
+            key: "西部",
+            children: [],
+        }, {
+            title: "南部",
+            value: "南部",
+            key: "南部",
+            children: [],
+        }, {
+            title: "東部",
+            value: "東部",
+            key: "東部",
+            children: [],
+        }, {
+            title: "其他",
+            value: "其他",
+            key: "其他",
+            children: [],
+        },
+    ];
+
+    return cityOptions.reduce((acc, curItem) => {
+        return acc.map((region) => {
+            return region.value === curItem.parent ? {
+                ...region,
+                children: [
+                    ...region.children,
+                    {
+                        title: curItem.label,
+                        value: curItem.value,
+                        key: curItem.value
+                    }
+                ]
+            } : region
+        })
+    }, oriData)
+}
+
+export const treeData = [
+    {
+        title: "Node1",
+        value: "北部",
+        key: "北部",
+        children: [
+        {
+            title: "Child Node1",
+            value: "0-0-0",
+            key: "0-0-0",
+        },
+        ],
+    },
+    {
+        title: "Node2",
+        value: "0-1",
+        key: "0-1",
+        children: [
+        {
+            title: "Child Node3",
+            value: "0-1-0",
+            key: "0-1-0",
+        },
+        {
+            title: "Child Node4",
+            value: "0-1-1",
+            key: "0-1-1",
+        },
+        {
+            title: "Child Node5",
+            value: "0-1-2",
+            key: "0-1-2",
+        },
+        ],
+    },
 ];

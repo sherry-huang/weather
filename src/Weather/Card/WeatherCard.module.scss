@@ -1,21 +1,42 @@
 .weather-card {
-    padding: 10px 20px;
+    padding: 10px 10px;
 
-    .card {
+    .card-box {
+        width: 300px;
+        background-color: #fff;
+        border: 2px solid #b4b4b4;
+        padding: 20px 20px;
         text-align: left;
-        margin: 30px 10px 0;
 
-        .card-detil {
+        .card-header {
             display: flex;
+            margin: 0 0 15px 0;
 
-            .detail-left {
-                flex: 2;
+            .header-left {
+                flex: 3;
+                
+                .box-title {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
             }
-            
-            .detail-right {
+
+            .header-right {
                 flex: 1;
             }
+
+        }
+
+        .card {
+            border-top: 1px solid #b7b7b7;
+    
+            .card-detil {
+                padding: 10px 0 0 0;
+            }
+        }
+
+        &:hover {
+            box-shadow: -5px 3px 3px rgba(180, 180, 180, 0.4);
         }
     }
-    
 }
