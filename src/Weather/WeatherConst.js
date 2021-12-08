@@ -1,4 +1,13 @@
+import sun from './Picture/sun.png';
+import fog from './Picture/fog.png';
+import rain from './Picture/rain.png';
+import snow from './Picture/snow.png';import cloudBeforeSun from './Picture/cloudBeforeSun.png';
+import cloudSunAndRain from './Picture/cloudSunAndRain.png';
+import thunderstorm from './Picture/thunderstorm.png';
+import manyCloud from './Picture/manyCloud.png';
+
 const authorizationKey = "CWB-1BBC5EA4-812C-46AC-ACD8-0FD64A6E794C";
+
 export const locationDefault = [
     "嘉義", "臺北", "高雄", "臺中", "新竹", "澎湖", "花蓮", "臺東", "蘭嶼", "基隆", "宜蘭", "金門", "馬祖"
 ];
@@ -61,29 +70,13 @@ export const fetchWeatherForecast = (cityName) => {
                 description: weatherElements.Wx.parameterName, // 晴時多雲
                 weatherCode: weatherElements.Wx.parameterValue, // 2
                 rainPossibility: weatherElements.PoP.parameterName + " " + weatherElements.PoP.parameterUnit, // 降雨機率
-                comfortability: weatherElements.CI.parameterName, // 稍有寒意至舒適
+                comfort: weatherElements.CI.parameterName, // 稍有寒意至舒適
                 hightTemp: weatherElements.MaxT.parameterName + "°" + weatherElements.MaxT.parameterUnit, // 最高溫度
                 lowTemp: weatherElements.MinT.parameterName + "°" + weatherElements.MinT.parameterUnit, // 最低溫度
             };
         })
       });
   };
-
-export const locationOptions = [
-    { label: '嘉義', value: '嘉義' },
-    { label: '臺北', value: '臺北' },
-    { label: '高雄', value: '高雄' },
-    { label: '臺中', value: '臺中' },
-    { label: '新竹', value: '新竹' },
-    { label: '澎湖', value: '澎湖' },
-    { label: '花蓮', value: '花蓮' },
-    { label: '臺東', value: '臺東' },
-    { label: '蘭嶼', value: '蘭嶼' },
-    { label: '基隆', value: '基隆' },
-    { label: '宜蘭', value: '宜蘭' },
-    { label: '馬祖', value: '馬祖' },
-    { label: '金門', value: '金門' },
-  ];
 
 export const cityOptions = [
     { label: '基隆市', value: '基隆市', parent: '北部'},
@@ -194,39 +187,60 @@ export const handleData = (cityOptions) => {
     }, oriData)
 }
 
-export const treeData = [
-    {
-        title: "Node1",
-        value: "北部",
-        key: "北部",
-        children: [
-        {
-            title: "Child Node1",
-            value: "0-0-0",
-            key: "0-0-0",
-        },
-        ],
-    },
-    {
-        title: "Node2",
-        value: "0-1",
-        key: "0-1",
-        children: [
-        {
-            title: "Child Node3",
-            value: "0-1-0",
-            key: "0-1-0",
-        },
-        {
-            title: "Child Node4",
-            value: "0-1-1",
-            key: "0-1-1",
-        },
-        {
-            title: "Child Node5",
-            value: "0-1-2",
-            key: "0-1-2",
-        },
-        ],
-    },
-];
+export const switchIcon = (code) => {
+    switch (parseInt(code)) {
+    case 1:
+        // 晴天
+        return sun;
+    case 2:
+    case 3:
+        // 晴時多雲、多雲時晴
+        return cloudBeforeSun;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        // 多雲、陰天
+        return manyCloud;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+        // 多雲有雨
+        return cloudSunAndRain;
+    case 20:
+    case 29:
+    case 30:
+    case 31:
+    case 32:
+        // 雨
+        return rain;
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 21:
+    case 22:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 41:
+        // 雷雨
+        return thunderstorm;
+    case 23:
+    case 42:
+        // 雪
+        return snow;
+    default:
+        // 霧 25 26 27 28
+        return fog;
+    }
+};

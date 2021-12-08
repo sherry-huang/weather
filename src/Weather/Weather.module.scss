@@ -1,38 +1,28 @@
 .weather {
-    background: linear-gradient(170deg, #B1C3ED 400px, #d9e5fe 0) left;
-                // #d9e5fe
-                // #B1C3ED
-                // #b1dfed
+    background: linear-gradient(170deg, #684E4F 400px, #E3C9CA 0) left;
     padding: 0 100px;
     display: flex;
     justify-content: center;
 
     .weather-box {
-        @media(min-width:960px) {
-            // > 960 則
-            max-width: 960px;
-        }
+        width: 1000px;
 
         .weather-header {
-            // background: linear-gradient(-20deg, #0000 82%, #B1C3ED 0) left; // 82%
-            // display: flex;
-            // justify-content: space-around;
-            // padding: 50px 100px 0;
             padding: 50px 0 0;
             text-align: left;
     
             .weather-title {
-                // padding: 0 0 50px 0;
                 font-size: 80px;
                 font-weight: 600;
+                color: #FFFFFF;
             }
             
             .weather-desc {
                 margin: 0 0 0 30px;
+                color: #FFFFFF;
             }
     
             .weather-form {
-                // border: 3px solid white;
                 margin: 20px 0 0 30px;
                 width: 600px;
                 line-height: 0em;
@@ -47,21 +37,13 @@
                 }
             }
         }
-    
+
         .weather-list {
             padding: 50px 0;
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            justify-content: space-between;
-
-            // @media(min-width:960px) {
-            //     justify-content: center;
-            // }
-
-            @media(max-width:768px) {
-                justify-content: center;
-            }
+            justify-content: center;
         }
     }
 }

@@ -9,11 +9,7 @@ import {
 import WeatherCard from "./Card/WeatherCard";
 import { Checkbox, Form, Button, TreeSelect, Row, Col } from "antd";
 import { isEqual } from "lodash";
-import {
-    faSun, faCloud, faCloudSun, faCloudSunRain,
-    faCloudRain, faCloudShowersHeavy, faSnowflake,
-    faSmog,
-} from "@fortawesome/free-solid-svg-icons";
+
 class Weather extends Component {
     formRef = React.createRef();
 
@@ -38,7 +34,7 @@ class Weather extends Component {
         const fetchingForecast = async () => {
         const data = await Promise.all([fetchWeatherForecast(cityDefault)]);
         this.setState({
-            data: data[0],
+            data: this.fillCard(data[0]),
             lastUpdate: dayjs(new Date()).format("YYYY-MM-DD HH:mm"),
         });
         };
@@ -53,61 +49,6 @@ class Weather extends Component {
 
     componentWillUnmount() {}
 
-    switchIcon = (code) => {
-        switch (code) {
-        case 1:
-            return faSun;
-        case 2:
-            return faCloudSun;
-        case 3:
-            return faCloudSunRain;
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-            return faCloud;
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 20:
-        case 29:
-        case 30:
-        case 31:
-        case 32:
-            // 雨
-            return faCloudRain;
-        case 15:
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-        case 21:
-        case 22:
-        case 33:
-        case 34:
-        case 35:
-        case 36:
-        case 37:
-        case 38:
-        case 39:
-        case 41:
-            // 大雨
-            return faCloudShowersHeavy;
-        case 23:
-        case 42:
-            // 雪
-            return faSnowflake;
-        default:
-            // 霧 25 26 27 28
-            return faSmog;
-        }
-    };
-
-    // type: undone, done, archive
     onChange = (value, key) => {
         this.setState({
             [key]: value,
@@ -131,7 +72,7 @@ class Weather extends Component {
             fetchWeatherForecast(submitData),
         ]);
         this.setState({
-            data: data[0],
+            data: this.fillCard(data[0]),
         });
         };
         fetchingForecast();
@@ -174,6 +115,14 @@ class Weather extends Component {
         ));
     };
 
+    fillCard = (data) => {
+        const num = data.length < 4 ? data.length : data.length % 4;
+        const tmpArr = !!data.length ? new Array(4 - num).fill({
+            transparent: true
+        }) : [];
+        return [ ...data, ...tmpArr]
+    }
+
     render() {
         const { SHOW_PARENT } = TreeSelect;
         const treeData = handleData(cityOptions);
@@ -215,9 +164,9 @@ class Weather extends Component {
                     </div>
                 </div>
                 <div className={styles["weather-list"]}>
-                {this.state.data.map((item, idx) => (
-                    <WeatherCard key={idx} data={item} switchIcon={this.switchIcon} />
-                ))}
+                    {this.state.data.map((item, idx) => (
+                        <WeatherCard key={idx} data={item} switchIcon={this.switchIcon} />
+                    ))}
                 </div>
             </div>
         </div>
@@ -225,13 +174,4 @@ class Weather extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//     todoList: selectors.makeGetTodoList(state),
-// });
-
-// const mapDispatchToProps = {
-//     ...actions,
-// };
-
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default Weather;
