@@ -23,4 +23,6 @@ In addition to the above information, here is also a simple icon, you can get a 
 2. The current corresponding weather information is displayed on the following page.
 ![image](https://github.com/sherry-huang/weather/blob/main/result.png)
 
+## Example
+
 ![gif](https://github.com/sherry-huang/weather/blob/main/introduction.gif)

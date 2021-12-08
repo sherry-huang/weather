@@ -23,4 +23,6 @@
 2. 於下面頁面顯示當前對應的天氣資訊。
 ![image](https://github.com/sherry-huang/weather/blob/main/result.png)
 
+## 範例
+
 ![gif](https://github.com/sherry-huang/weather/blob/main/introduction.gif)
