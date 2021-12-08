@@ -2,7 +2,7 @@
 
 [English Version](https://github.com/sherry-huang/weather/blob/main/README.md) | [中文版](https://github.com/sherry-huang/weather/blob/main/README.zh-TW.md)
 
-# Weather Forecast
+# Current Weather
 
 困擾出門要不要帶雨傘？\
 苦於不知晚上溫差是否需要帶件外套？
